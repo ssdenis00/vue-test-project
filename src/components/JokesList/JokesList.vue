@@ -1,6 +1,6 @@
 <template>
   <ul class="items">
-    <li class="item">
+    <!-- <li class="item">
       <p class="joke">Анекдот</p>
       <button type="button" arial-lable="like" class="like"></button>
     </li>
@@ -11,7 +11,7 @@
     <li class="item">
       <p class="joke">Анекдот</p>
       <button type="button" arial-lable="like" class="like"></button>
-    </li>
+    </li> -->
   </ul>
 </template>
 
