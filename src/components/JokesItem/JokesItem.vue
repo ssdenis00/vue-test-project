@@ -1,7 +1,13 @@
 <template>
-  <li class="item">
+  <li class="item" v-bind:class="{ item_active: joke.isLiked }">
     <p class="joke">{{ joke.title }}</p>
-    <button type="button" arial-lable="like" class="like"></button>
+    <button
+      type="button"
+      arial-lable="like"
+      class="like"
+      v-bind:class="{ like_active: joke.isLiked }"
+      v-on:click="joke.isLiked = !joke.isLiked"
+    ></button>
   </li>
 </template>
 

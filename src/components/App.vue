@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Search />
+    <Search v-on:value="getValue" />
     <JokesList v-bind:jokes="jokes" />
   </div>
 </template>
@@ -9,16 +9,33 @@
 import Search from "@/components/Search/Search";
 import JokesList from "@/components/JokesList/JokesList";
 
+const data = [
+  { id: 1, title: "Анекдот 1", isLiked: false },
+  { id: 2, title: "Анекдот 2", isLiked: false },
+  { id: 3, title: "Анекдот 3", isLiked: false },
+];
+
 export default {
   name: "App",
   data() {
     return {
-      jokes: [
-        { id: 1, title: "Анекдот 1", isLiked: false },
-        { id: 1, title: "Анекдот 2", isLiked: false },
-        { id: 1, title: "Анекдот 3", isLiked: false },
-      ],
+      jokes: [],
     };
+  },
+  created() {
+    this.jokes = data;
+  },
+  methods: {
+    getValue(res) {
+      console.log(res);
+      if (res === "") {
+        this.jokes = data;
+      } else {
+        this.jokes = data.filter((item) => {
+          return item.title.includes(res);
+        });
+      }
+    },
   },
   components: {
     Search,

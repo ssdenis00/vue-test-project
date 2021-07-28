@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.item_is-liked {
+.item_active {
   background: #D8FFD3;
 }
 
@@ -33,6 +33,6 @@
   transform: scale(1.1, 1.1);
 }
 
-.like_is-liked {
+.like_active {
   background: center / contain url('../../images/thumbs_up_icon-liked.svg') no-repeat;
 }
