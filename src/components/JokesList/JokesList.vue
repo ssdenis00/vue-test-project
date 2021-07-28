@@ -1,21 +1,17 @@
 <template>
   <ul class="items">
-    <!-- <li class="item">
-      <p class="joke">Анекдот</p>
-      <button type="button" arial-lable="like" class="like"></button>
-    </li>
-    <li class="item">
-      <p class="joke">Анекдот</p>
-      <button type="button" arial-lable="like" class="like"></button>
-    </li>
-    <li class="item">
-      <p class="joke">Анекдот</p>
-      <button type="button" arial-lable="like" class="like"></button>
-    </li> -->
+    <JokesItem />
   </ul>
 </template>
 
-
+<script>
+import JokesItem from "@/components/JokesItem/JokesItem";
+export default {
+  components: {
+    JokesItem,
+  },
+};
+</script>
 <style scoped>
 @import url("./jokesList.css");
 </style>

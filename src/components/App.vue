@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Search />
-    <JokesList />
+    <JokesList v-bind:jokes="jokes" />
   </div>
 </template>
 
@@ -11,6 +11,15 @@ import JokesList from "@/components/JokesList/JokesList";
 
 export default {
   name: "App",
+  data() {
+    return {
+      jokes: [
+        { id: 1, title: "Анекдот 1", isLiked: false },
+        { id: 1, title: "Анекдот 2", isLiked: false },
+        { id: 1, title: "Анекдот 3", isLiked: false },
+      ],
+    };
+  },
   components: {
     Search,
     JokesList,
