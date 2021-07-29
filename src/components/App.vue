@@ -9,30 +9,34 @@
 import Search from "@/components/Search/Search";
 import JokesList from "@/components/JokesList/JokesList";
 
-const data = [
-  { id: 1, title: "Анекдот 1", isLiked: false },
-  { id: 2, title: "Анекдот 2", isLiked: false },
-  { id: 3, title: "Анекдот 3", isLiked: false },
-];
-
 export default {
   name: "App",
   data() {
     return {
       jokes: [],
+      data: [],
     };
   },
-  created() {
-    this.jokes = data;
+  mounted() {
+    fetch("https://v2.jokeapi.dev/joke/Any?type=single&amount=10", {
+      headers: {
+        "Content-Type": "application/json",
+        lang: "en",
+      },
+    })
+      .then((response) => response.json())
+      .then((res) => {
+        this.jokes = res.jokes;
+        this.data = JSON.parse(JSON.stringify(this.jokes));
+      });
   },
   methods: {
     getValue(res) {
-      console.log(res);
       if (res === "") {
-        this.jokes = data;
+        this.jokes = this.data;
       } else {
-        this.jokes = data.filter((item) => {
-          return item.title.includes(res);
+        this.jokes = this.data.filter((item) => {
+          return item.joke.includes(res);
         });
       }
     },
