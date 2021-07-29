@@ -14,7 +14,7 @@ export default {
   data() {
     return {
       jokes: [],
-      data: [],
+      jokesDefault: [],
     };
   },
   mounted() {
@@ -26,16 +26,20 @@ export default {
     })
       .then((response) => response.json())
       .then((res) => {
-        this.jokes = res.jokes;
-        this.data = JSON.parse(JSON.stringify(this.jokes));
+        this.jokes = res.jokes.map((item) => {
+          item.isLiked = false;
+          return item;
+        });
+        this.jokesDefault = JSON.parse(JSON.stringify(this.jokes));
       });
   },
   methods: {
     getValue(res) {
+      console.log(this.jokesDefault);
       if (res === "") {
-        this.jokes = this.data;
+        this.jokes = this.jokesDefault;
       } else {
-        this.jokes = this.data.filter((item) => {
+        this.jokes = this.jokesDefault.filter((item) => {
           return item.joke.includes(res);
         });
       }
