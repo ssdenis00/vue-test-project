@@ -6,7 +6,7 @@
       arial-lable="like"
       class="like"
       v-bind:class="{ like_active: joke.isLiked }"
-      v-on:click="joke.isLiked = !joke.isLiked"
+      v-on:click="handleLikeClick"
     ></button>
   </li>
 </template>
@@ -17,6 +17,12 @@ export default {
     joke: {
       type: Object,
       required: true,
+    },
+  },
+  methods: {
+    handleLikeClick() {
+      this.joke.isLiked = !this.joke.isLiked;
+      this.$emit("handleLikeClick", this.joke);
     },
   },
 };

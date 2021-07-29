@@ -1,6 +1,11 @@
 <template>
   <ul class="items">
-    <JokesItem v-for="joke of jokes" :key="joke.id" v-bind:joke="joke" />
+    <JokesItem
+      v-for="joke of jokes"
+      :key="joke.id"
+      v-bind:joke="joke"
+      @handleLikeClick="handleLikeClick"
+    />
   </ul>
 </template>
 
@@ -10,6 +15,11 @@ export default {
   props: ["jokes"],
   components: {
     JokesItem,
+  },
+  methods: {
+    handleLikeClick(res) {
+      this.$emit("handleLikeClick", res);
+    },
   },
 };
 </script>

@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <Search v-on:value="getValue" />
-    <JokesList v-bind:jokes="jokes" />
+    <JokesList v-bind:jokes="jokes" @handleLikeClick="getLikedJokes" />
   </div>
 </template>
 
 <script>
 import Search from "@/components/Search/Search";
 import JokesList from "@/components/JokesList/JokesList";
-
 export default {
   name: "App",
   data() {
     return {
       jokes: [],
       jokesDefault: [],
+      isLiked: [],
     };
   },
   mounted() {
@@ -43,6 +43,10 @@ export default {
           return item.joke.includes(res);
         });
       }
+    },
+    getLikedJokes(item) {
+      this.isLiked = [...this.isLiked, item];
+      console.log(this.isLiked);
     },
   },
   components: {

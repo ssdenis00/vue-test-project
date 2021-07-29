@@ -35,6 +35,16 @@
   transform: scale(1.1, 1.1);
 }
 
+.like:focus {
+  transform: scale(1.1, 1.1);
+  border: none;
+}
+
+.like:active {
+  transform: scale(1.1, 1.1);
+  border: none;
+}
+
 .like_active {
   background: center / contain url('../../images/thumbs_up_icon-liked.svg') no-repeat;
 }
