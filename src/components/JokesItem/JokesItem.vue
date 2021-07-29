@@ -3,7 +3,7 @@
     <p class="joke">{{ joke.joke }}</p>
     <button
       type="button"
-      arial-lable="like"
+      aria-lable="like"
       class="like"
       v-bind:class="{ like_active: joke.isLiked }"
       v-on:click="handleLikeClick"

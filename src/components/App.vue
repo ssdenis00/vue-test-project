@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Search v-on:value="getValue" />
+    <Search v-on:value="searchForJokes" />
     <JokesList v-bind:jokes="jokes" @handleLikeClick="getLikedJokes" />
   </div>
 </template>
@@ -26,16 +26,20 @@ export default {
     })
       .then((response) => response.json())
       .then((res) => {
+        // добавляю свойство для лайков в каждый объект массива
         this.jokes = res.jokes.map((item) => {
+          //
           item.isLiked = false;
           return item;
         });
+
+        // создал дубликат объекта, для того чтобы возвращать его при удалении строки с инпута.
         this.jokesDefault = JSON.parse(JSON.stringify(this.jokes));
       });
   },
   methods: {
-    getValue(res) {
-      console.log(this.jokesDefault);
+    // поиск по слову
+    searchForJokes(res) {
       if (res === "") {
         this.jokes = this.jokesDefault;
       } else {
@@ -44,6 +48,7 @@ export default {
         });
       }
     },
+    // добавляю залайканый анекдот
     getLikedJokes(item) {
       this.isLiked = [...this.isLiked, item];
       console.log(this.isLiked);
