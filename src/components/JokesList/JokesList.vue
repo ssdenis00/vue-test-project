@@ -4,7 +4,8 @@
       v-for="joke of jokes"
       :key="joke.id"
       v-bind:joke="joke"
-      @handleLikeClick="handleLikeClick"
+      @getLike="getLike"
+      @removeLike="removeLike"
     />
   </ul>
 </template>
@@ -17,8 +18,11 @@ export default {
     JokesItem,
   },
   methods: {
-    handleLikeClick(res) {
-      this.$emit("handleLikeClick", res);
+    getLike(res) {
+      this.$emit("getLike", res);
+    },
+    removeLike(res) {
+      this.$emit("removeLike", res);
     },
   },
 };

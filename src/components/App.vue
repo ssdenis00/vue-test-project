@@ -1,7 +1,11 @@
 <template>
   <div id="app">
     <Search v-on:value="searchForJokes" />
-    <JokesList v-bind:jokes="jokes" @handleLikeClick="getLikedJokes" />
+    <JokesList
+      v-bind:jokes="jokes"
+      @getLike="getLikedJokes"
+      @removeLike="removeLikedJokes"
+    />
   </div>
 </template>
 
@@ -28,7 +32,6 @@ export default {
       .then((res) => {
         // добавляю свойство для лайков в каждый объект массива
         this.jokes = res.jokes.map((item) => {
-          //
           item.isLiked = false;
           return item;
         });
@@ -47,6 +50,11 @@ export default {
           return item.joke.includes(res);
         });
       }
+    },
+
+    removeLikedJokes(item) {
+      this.isLiked = this.isLiked.filter((elem) => item.id !== elem.id);
+      console.log(this.isLiked);
     },
     // добавляю залайканый анекдот
     getLikedJokes(item) {

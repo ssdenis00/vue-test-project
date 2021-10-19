@@ -21,8 +21,13 @@ export default {
   },
   methods: {
     handleLikeClick() {
-      this.joke.isLiked = !this.joke.isLiked;
-      this.$emit("handleLikeClick", this.joke);
+      if (this.joke.isLiked) {
+        this.joke.isLiked = false;
+        this.$emit("removeLike", this.joke);
+      } else {
+        this.joke.isLiked = true;
+        this.$emit("getLike", this.joke);
+      }
     },
   },
 };
